@@ -17,8 +17,14 @@ class ExtExcelHandler(BaseHandler):
         super(ExtExcelHandler, self).initialize()
 
     def get(self, *args, **kwargs):
+
+        url_str = args[0]
+        url_arr = self.parse_url(url_str)
+
         if len(args) == 0 or args[0] == 'index':
             self.index()
+        elif len(url_arr) == 1:
+            self.view(url_str)
         else:
             self.render('misc/html/404.html', kwd={}, userinfo=self.userinfo)
 
@@ -43,3 +49,28 @@ class ExtExcelHandler(BaseHandler):
                     recs = recs,
                     cfg=CMS_CFG,
                     kwd={}, )
+
+    def view(self, uid):
+        '''
+        View the page.
+        '''
+        kwd = {
+            'pager': '',
+        }
+
+        stg_table_name = 'ext_xlsx'
+        conn = config.DB_CON
+        cur = conn.cursor()
+        select_stg_sql = "SELECT  *  from %s WHERE id = %s;" % (stg_table_name,uid)
+        cur.execute(select_stg_sql)
+
+        recs = cur.fetchall()
+
+        conn.close()
+
+
+        self.render('ext_xlsx/ext_view.html',
+                    postinfo=recs,
+
+
+                    cfg=CMS_CFG)

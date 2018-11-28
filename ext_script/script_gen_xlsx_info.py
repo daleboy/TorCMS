@@ -11,7 +11,7 @@ def gen_xlsx_table_info():
     向表中插入数据
     '''
 
-    XLSX_FILE = './database/meta/20180811.xlsx'
+    XLSX_FILE = './database/esheet/20180811.xlsx'
     if os.path.exists(XLSX_FILE):
         pass
     else:
@@ -30,7 +30,7 @@ def gen_xlsx_table_info():
     for sheet_ranges in load_workbook(filename=XLSX_FILE):
 
 
-        for row_num in range(6,262):
+        for row_num in range(6,263):
             tvalue = []
             for xr in FILTER_COLUMNS:
 
@@ -43,7 +43,7 @@ def gen_xlsx_table_info():
                     tvalue.append(row4_val)
 
             insert_tab(tvalue)
-
+    print("成功插入数据")
 
 
 def insert_tab(tvalue):
@@ -58,7 +58,7 @@ def insert_tab(tvalue):
     cur = conn.cursor()
     cur.execute(insert_stg_sql)
 
-    print("成功插入数据")
+
 
     conn.commit()
     conn.close()

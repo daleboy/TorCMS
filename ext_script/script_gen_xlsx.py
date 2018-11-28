@@ -13,7 +13,7 @@ def gen_xlsx_table():
     '''
 
 
-    XLSX_FILE = './database/meta/20180811.xlsx'
+    XLSX_FILE = './database/esheet/20180811.xlsx'
     if os.path.exists(XLSX_FILE):
         pass
     else:
