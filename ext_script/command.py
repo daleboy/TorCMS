@@ -8,7 +8,7 @@ import sys
 import getopt
 
 from .script_init import run_init
-
+from .autocrud.gen_html_file import generate_html_files as run_auto
 
 
 
@@ -20,6 +20,7 @@ def entry(argv):
     command_dic = {
 
         'init': run_init,
+        'auto': run_auto,
 
     }
     try:

@@ -21,8 +21,10 @@ class ExtExcelHandler(BaseHandler):
         url_str = args[0]
         url_arr = self.parse_url(url_str)
 
-        if len(args) == 0 or args[0] == 'index':
+        if args[0] == 'index':
             self.index()
+        elif args[0] == 'list':
+            self.list()
         elif len(url_arr) == 1:
             self.view(url_str)
         else:
@@ -33,44 +35,17 @@ class ExtExcelHandler(BaseHandler):
         Index funtion.
         '''
 
-
-        stg_table_name = 'ext_xlsx'
-        conn = config.DB_CON
-        cur = conn.cursor()
-        select_stg_sql = "SELECT  *  from %s;" % (stg_table_name)
-        cur.execute(select_stg_sql)
-
-        recs = cur.fetchall()
-
-        conn.close()
-
         self.render('ext_excel/index.html',
                     userinfo=self.userinfo,
-                    recs = recs,
+
                     cfg=CMS_CFG,
                     kwd={}, )
 
-    def view(self, uid):
-        '''
-        View the page.
-        '''
-        kwd = {
-            'pager': '',
-        }
+    def list(self):
 
-        stg_table_name = 'ext_xlsx'
-        conn = config.DB_CON
-        cur = conn.cursor()
-        select_stg_sql = "SELECT  *  from %s WHERE id = %s;" % (stg_table_name,uid)
-        cur.execute(select_stg_sql)
+        kwd = { }
 
-        recs = cur.fetchall()
-
-        conn.close()
-
-
-        self.render('ext_xlsx/ext_view.html',
-                    postinfo=recs,
-
-
-                    cfg=CMS_CFG)
+        self.render('ext_autogen/list/list.html',
+                    userinfo=self.userinfo,
+                    kwd=kwd,
+                    )

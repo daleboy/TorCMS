@@ -5,7 +5,7 @@ import os
 import config
 import pathlib
 from openpyxl.reader.excel import load_workbook
-
+from .autocrud.base_crud import FILTER_COLUMNS
 
 def gen_xlsx_table():
     '''
@@ -19,13 +19,6 @@ def gen_xlsx_table():
     else:
         return
 
-    RAW_LIST = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-                'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-
-    FILTER_COLUMNS = RAW_LIST + ["A" + x for x in RAW_LIST] + \
-                     ["B" + x for x in RAW_LIST] + \
-                     ["C" + x for x in RAW_LIST] + \
-                     ["D" + x for x in RAW_LIST]
     fields = []
     for sheet_ranges in load_workbook(filename=XLSX_FILE):
 
