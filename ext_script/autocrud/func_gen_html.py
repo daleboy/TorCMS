@@ -7,8 +7,6 @@ for each item.
 from .html_tpl import HTML_TPL_DICT
 
 
-
-
 def gen_input_view(sig_dic):
     '''
     Viewing the HTML text.
@@ -20,9 +18,6 @@ def gen_input_view(sig_dic):
         sig_dic['dic'][1],
     )
     return html_str
-
-
-
 
 
 def gen_radio_view(sig_dic):
@@ -45,7 +40,6 @@ def gen_radio_view(sig_dic):
 
     view_zuoxiang += '''</div>'''
     return view_zuoxiang
-
 
 
 def gen_checkbox_view(sig_dic):
@@ -72,7 +66,6 @@ def gen_checkbox_view(sig_dic):
     return view_zuoxiang
 
 
-
 def gen_select_view(sig_dic):
     '''
     HTML view, for selection.
@@ -97,7 +90,6 @@ def gen_select_view(sig_dic):
     {option_str}
     </div></div>
     '''.format(sig_zh=sig_dic['zh'], option_str=option_str)
-
 
 
 def gen_file_view(sig_dic):
