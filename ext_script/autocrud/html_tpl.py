@@ -29,7 +29,22 @@ TPL_LIST = '''
     <p>{{ footer_text }}</p>
     {% end %}'''
 
-TPL_LISTINFO = '''{% extends "../../ext_excel/tpl_listinfo.html" %}'''
+TPL_LISTINFO = '''{% extends "../../ext_excel/tpl_viewssss.html" %}
+    {% block header %}
+    <h1>{{ header_text }}</h1>
+    {% end %}
+
+    {% block extrainfo %}
+
+    <div id="iga_view_rec_box">
+    xxxxxx
+    </div>
+
+    {% end %}
+
+    {% block footer %}
+    <p>{{ footer_text }}</p>
+    {% end %}'''
 
 TPL_VIEW = '''{% extends "../../ext_excel/tpl_viewssss.html" %}
     {% block header %}

@@ -38,7 +38,7 @@ def gen_xlsx_table_info():
         select_sheet = file_d.sheets()[x]
 
         # 获取总共的行数
-        rows_num = select_sheet.nrows
+        rows_num = select_sheet.nrows + 1
 
         for row_num in range(6, rows_num):
             tvalue = []
@@ -54,7 +54,7 @@ def gen_xlsx_table_info():
 
             insert_tab(tvalue)
         x = x + 1
-    print("成功插入数据")
+    print("成功插入 " + str(rows_num - 6) + " 行数据")
 
 
 def insert_tab(tvalue):
