@@ -18,18 +18,15 @@ TPL_LIST = '''
     {% end %}
 
     {% block infolist %}
-    <div class="list_house">
-    <ul class="list-group">
-    <span id="resultSpan"></span>
 
-    </ul>
-    </div>
+
+    asdfasdfasdfsdfsdsadsads
     {% end %}
     {% block footer %}
     <p>{{ footer_text }}</p>
     {% end %}'''
 
-TPL_LISTINFO = '''{% extends "../../ext_excel/tpl_viewssss.html" %}
+TPL_LISTINFO = '''{% extends "../../ext_excel/tpl_view.html" %}
     {% block header %}
     <h1>{{ header_text }}</h1>
     {% end %}
