@@ -12,6 +12,7 @@ class ExtExcelHandler(BaseHandler):
     '''
     Index for the application.
     '''
+
     def initialize(self, **kwargs):
         super(ExtExcelHandler, self).initialize()
 
@@ -50,30 +51,52 @@ class ExtExcelHandler(BaseHandler):
         cur.execute(select_stg_sql)
         postinfo = cur.fetchall()
 
+        index = cur.description
+
+        result = []
+        for res in postinfo:
+
+            row = {}
+            for i in range(len(index) - 1):
+                row[index[i][0]] = res[i]
+            result.append(row)
+
         conn.commit()
         conn.close()
         self.render('ext_excel/list.html',
                     userinfo=self.userinfo,
-                    postinfo = postinfo,
+                    result=result,
+                    postinfo=postinfo,
                     kwd=kwd,
                     )
-    def view(self,uid):
 
-        kwd = {'uid':uid}
+    def view(self, uid):
+
+        kwd = {'uid': uid}
         stg_table_name = 'ext_xlsx'
 
-        select_stg_sql = "SELECT * from  %s WHERE id = '%s';" % (stg_table_name,uid)
+        select_stg_sql = "SELECT * from  %s WHERE id = '%s';" % (stg_table_name, uid)
 
         conn = config.DB_CON
         cur = conn.cursor()
         cur.execute(select_stg_sql)
         postinfo = cur.fetchall()
+        index = cur.description
+
+        result = []
+        for res in postinfo:
+
+            row = {}
+            for i in range(len(index) - 1):
+                row[index[i][0]] = res[i]
+            result.append(row)
 
         conn.commit()
         conn.close()
 
         self.render('ext_excel/view.html',
                     userinfo=self.userinfo,
-                    postinfo = postinfo,
+                    postinfo=postinfo,
+                    result=result,
                     kwd=kwd,
                     )
