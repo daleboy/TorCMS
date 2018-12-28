@@ -24,7 +24,7 @@ class ExtExcelHandler(BaseHandler):
             self.list()
         elif len(url_arr) == 1:
 
-            self.view(url_str)  # ToDo: 有问题，没有此方法
+            self.view(url_str)
         else:
             self.render('misc/html/404.html', kwd={}, userinfo=self.userinfo)
 
